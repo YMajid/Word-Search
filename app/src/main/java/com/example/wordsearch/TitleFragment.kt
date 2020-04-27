@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.wordsearch.databinding.TitleFragmentBinding
 
 class TitleFragment: Fragment() {
@@ -13,9 +16,9 @@ class TitleFragment: Fragment() {
 
         val binding: TitleFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.title_fragment, container, false)
 
-//        binding.playGameButton.setOnClickListener {
-//
-//        }
+        binding.playGameButton.setOnClickListener {
+            findNavController().navigate(R.id.action_titleFragment_to_gameFragment)
+        }
 
         return binding.root
     }
