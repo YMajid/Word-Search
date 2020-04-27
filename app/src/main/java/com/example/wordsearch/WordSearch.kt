@@ -76,6 +76,7 @@ class WordSearch() {
     }
 
     fun tryPlacingWord(word: String, movement: IntArray, size: Int, grid: MutableList<MutableList<Char>>): Boolean {
+
         val xLength = movement[0]*(word.length)
         val yLength = movement[1]*(word.length)
 
@@ -89,8 +90,8 @@ class WordSearch() {
 
                 if ((xFinal in 0..size) && (yFinal in 0..size)) {
                     if (findSlot(column, row, word, movement, grid)) {
-                        var xPosition = row
-                        var yPosition = column
+                        var xPosition = column
+                        var yPosition = row
                         word.forEach { letter ->
                             grid[xPosition][yPosition] = letter
                             xPosition += movement[0]
@@ -105,12 +106,12 @@ class WordSearch() {
     }
 
     val placementType = arrayListOf<PlacementType>(PlacementType.leftRight, PlacementType.rightLeft, PlacementType.upDown, PlacementType.downUp,
-        PlacementType.topLeftBottomRight, PlacementType.topRightBottomLeft, PlacementType.bottomLeftTopRight, PlacementType.bottomRightTopLeft).shuffled()
+        PlacementType.topLeftBottomRight, PlacementType.topRightBottomLeft, PlacementType.bottomLeftTopRight, PlacementType.bottomRightTopLeft)
 
     fun placeWord(word: String, size: Int, grid: MutableList<MutableList<Char>>): Boolean {
         val formattedWord = word.toUpperCase()
 
-        for (type in placementType) {
+        for (type in placementType.shuffled()) {
             //TODO Refactor movement function
             if (tryPlacingWord(formattedWord, type.movement(type), size, grid)) {
                 return true
