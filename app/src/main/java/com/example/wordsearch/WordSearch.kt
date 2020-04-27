@@ -1,6 +1,6 @@
-package com.example.wordsearch
+import com.example.wordsearch.PlacementType
 
-class WordSearch {
+class WordSearch() {
     val letters = "ABCDEFGHIJKLMOPQRSTUVWSYZ"
 
     val wordList = listOf(
@@ -17,13 +17,18 @@ class WordSearch {
         "Engineer",
         "Intern",
         "Store",
-        "Merchant"
+        "Culture",
+        "Merchant",
+        "Business",
+        "Journey",
+        "Invest"
     )
 
     val gridSize = 10
 
     fun makeGrid(size: Int) {
-        val grid = MutableList(size, {MutableList<Char>(size, {' '})})
+        val grid = MutableList(size) {MutableList<Char>(size) { ' ' } }
+
         placeAllWords(wordList, size, grid)
         fillSlots(grid)
         printGrid(grid)
@@ -55,8 +60,7 @@ class WordSearch {
 
         word.forEach { letter ->
             if (xPosition in 0 until grid.size && yPosition in 0 until grid.size) {
-                var slot = grid[xPosition][yPosition]
-
+                val slot = grid[xPosition][yPosition]
                 if (slot == ' ' || slot == letter) {
                     xPosition += movement[0]
                     yPosition += movement[1]
@@ -91,10 +95,6 @@ class WordSearch {
                             grid[xPosition][yPosition] = letter
                             xPosition += movement[0]
                             yPosition += movement[1]
-                            //TODO should not need this check
-                            if (xPosition !in 0 until size || yPosition !in 0 until size) {
-                                return false
-                            }
                         }
                         return true
                     }
@@ -104,7 +104,6 @@ class WordSearch {
         return false
     }
 
-    //TODO different placement types based on difficulty
     val placementType = arrayListOf<PlacementType>(PlacementType.leftRight, PlacementType.rightLeft, PlacementType.upDown, PlacementType.downUp,
         PlacementType.topLeftBottomRight, PlacementType.topRightBottomLeft, PlacementType.bottomLeftTopRight, PlacementType.bottomRightTopLeft).shuffled()
 
