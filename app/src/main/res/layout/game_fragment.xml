@@ -5,7 +5,9 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+                name="gameViewModel"
+                type="com.example.wordsearch.GameViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,6 +15,46 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".GameFragment">
+
+        <TextView
+                android:id="@+id/timer_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/hind_medium"
+                android:textColor="@color/grey_text_color"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:text="@{gameViewModel.currentTimeString}"
+                app:layout_constraintBottom_toTopOf="@+id/score_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="0:00"/>
+
+        <TextView
+                android:id="@+id/score_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/hind_medium"
+                android:textColor="@color/grey_text_color"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:text="@{@string/score_format(gameViewModel.score)}"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Score: 2" />
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="32dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

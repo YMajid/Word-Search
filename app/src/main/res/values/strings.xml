@@ -4,8 +4,9 @@
     <string name="find_words">find the words!</string>
     <string name="play">Play</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="final_score">Your final score is</string>
     <string name="play_again">Play Again</string>
+
+    <string name="score_format">Current Score: %d</string>
 </resources>
