@@ -1,40 +1,22 @@
 import com.example.wordsearch.PlacementType
 
-class WordSearch() {
-    val letters = "ABCDEFGHIJKLMOPQRSTUVWSYZ"
+class WordSearch {
 
-    val wordList = listOf(
-        "Kotlin",
-        "Swift",
-        "Java",
-        "ObjectiveC",
-        "Variable",
-        "Mobile",
-        "Shopify",
-        "Fall",
-        "Challenge",
-        "Android",
-        "Engineer",
-        "Intern",
-        "Store",
-        "Culture",
-        "Merchant",
-        "Business",
-        "Journey",
-        "Invest"
-    )
+    private val letters = "ABCDEFGHIJKLMOPQRSTUVWSYZ"
 
-    val gridSize = 10
+    private val placementType = arrayListOf<PlacementType>(PlacementType.leftRight, PlacementType.rightLeft, PlacementType.upDown, PlacementType.downUp,
+        PlacementType.topLeftBottomRight, PlacementType.topRightBottomLeft, PlacementType.bottomLeftTopRight, PlacementType.bottomRightTopLeft)
 
-    fun makeGrid(size: Int) {
+
+    fun makeGrid(size: Int, words: List<String>) {
         val grid = MutableList(size) {MutableList<Char>(size) { ' ' } }
 
-        placeAllWords(wordList, size, grid)
+        placeAllWords(words, size, grid)
         fillSlots(grid)
         printGrid(grid)
     }
 
-    fun fillSlots(grid: MutableList<MutableList<Char>>) {
+    private fun fillSlots(grid: MutableList<MutableList<Char>>) {
         for (row in grid) {
             val rowIterator = row.listIterator()
             rowIterator.forEach { slot ->
@@ -45,7 +27,7 @@ class WordSearch() {
         }
     }
 
-    fun printGrid(grid: MutableList<MutableList<Char>>) {
+    private fun printGrid(grid: MutableList<MutableList<Char>>) {
         for (row in grid) {
             for (slot in row) {
                 print(slot)
@@ -54,7 +36,7 @@ class WordSearch() {
         }
     }
 
-    fun findSlot(x: Int, y:Int, word: String, movement: IntArray, grid: MutableList<MutableList<Char>>): Boolean {
+    private fun findSlot(x: Int, y:Int, word: String, movement: IntArray, grid: MutableList<MutableList<Char>>): Boolean {
         var xPosition = x
         var yPosition = y
 
@@ -75,7 +57,7 @@ class WordSearch() {
         return true
     }
 
-    fun tryPlacingWord(word: String, movement: IntArray, size: Int, grid: MutableList<MutableList<Char>>): Boolean {
+    private fun tryPlacingWord(word: String, movement: IntArray, size: Int, grid: MutableList<MutableList<Char>>): Boolean {
 
         val xLength = movement[0]*(word.length)
         val yLength = movement[1]*(word.length)
@@ -105,10 +87,7 @@ class WordSearch() {
         return false
     }
 
-    val placementType = arrayListOf<PlacementType>(PlacementType.leftRight, PlacementType.rightLeft, PlacementType.upDown, PlacementType.downUp,
-        PlacementType.topLeftBottomRight, PlacementType.topRightBottomLeft, PlacementType.bottomLeftTopRight, PlacementType.bottomRightTopLeft)
-
-    fun placeWord(word: String, size: Int, grid: MutableList<MutableList<Char>>): Boolean {
+    private fun placeWord(word: String, size: Int, grid: MutableList<MutableList<Char>>): Boolean {
         val formattedWord = word.toUpperCase()
 
         for (type in placementType.shuffled()) {
@@ -121,7 +100,7 @@ class WordSearch() {
     }
 
     //TODO Refactor function names and signatures
-    fun placeAllWords(words: List<String>, size: Int, grid: MutableList<MutableList<Char>>): List<String> {
+    private fun placeAllWords(words: List<String>, size: Int, grid: MutableList<MutableList<Char>>): List<String> {
         val shuffledWords = words.shuffled()
 
         val usedWords = mutableListOf<String>()
