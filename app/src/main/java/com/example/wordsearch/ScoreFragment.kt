@@ -19,16 +19,16 @@ class ScoreFragment : Fragment() {
     private lateinit var viewModel: ScoreViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.id.score_layout, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.score_fragment, container, false)
 
         val scoreFragmentArgs by navArgs<ScoreFragmentArgs>()
 
-        viewModelFactory = ScoreViewModelFactory(scoreFragmentArgs.time)
+        viewModelFactory = ScoreViewModelFactory(scoreFragmentArgs.score)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ScoreViewModel::class.java)
 
         binding.scoreViewModel = viewModel
 
-        viewModel.playAgain.observe(this, Observer { playAgain ->
+        viewModel.playAgain.observe(viewLifecycleOwner, Observer { playAgain ->
             if (playAgain) {
                 findNavController().navigate(ScoreFragmentDirections.actionRestart())
                 viewModel.onPlayAgainComplete()

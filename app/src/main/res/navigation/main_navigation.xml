@@ -16,6 +16,6 @@
     <fragment android:id="@+id/scoreFragment" android:name="com.example.wordsearch.ScoreFragment"
               android:label="ScoreFragment">
         <action android:id="@+id/action_restart" app:destination="@id/gameFragment"/>
-        <argument android:name="time" app:argType="integer"/>
+        <argument android:name="score" app:argType="integer"/>
     </fragment>
 </navigation>
