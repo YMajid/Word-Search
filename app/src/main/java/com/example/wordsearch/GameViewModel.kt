@@ -10,6 +10,7 @@ import androidx.lifecycle.Transformations
 
 class GameViewModel: ViewModel() {
 
+    //TODO increase game time
     companion object {
         const val DONE = 0L
         const val ONE_SECOND = 1000L
@@ -63,12 +64,13 @@ class GameViewModel: ViewModel() {
 
     private val gridSize = 10
 
-    var grid: List<List<Char>>
+    lateinit var grid: List<List<Char>>
+    lateinit var usedWords: String
 
     init {
         _score.value = 0
         _eventGameFinished.value = false
-        grid = WordSearch().makeGrid(gridSize, wordList)
+        createGrid(gridSize, wordList)
 
         timer = object  : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
             override fun onTick(millisUntilFinished: Long) {
@@ -82,6 +84,13 @@ class GameViewModel: ViewModel() {
         }
 
         timer.start()
+    }
+
+    //Returns grid and a string of words used
+    private fun createGrid(size: Int, words: List<String>) {
+        val wordSearch = WordSearch()
+        grid = wordSearch.makeGrid(size, words)
+        usedWords = "Look for: " + wordSearch.usedWordsList.joinToString()
     }
 
     fun onGameFinishComplete() {

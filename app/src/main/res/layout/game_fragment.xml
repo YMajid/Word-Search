@@ -61,6 +61,24 @@
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="Score: 2" />
 
+        <TextView
+                android:id="@+id/words_string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/hind_medium"
+                android:textColor="@color/black_text_color"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                android:text="@{gameViewModel.usedWords}"
+                tools:text="Look for: Kotlin, Swift, Java, ObjectiveC, Variable, Mobile"
+                app:layout_constraintTop_toBottomOf="@id/letter_grid"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+        />
+
         <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"
                 android:layout_width="wrap_content"

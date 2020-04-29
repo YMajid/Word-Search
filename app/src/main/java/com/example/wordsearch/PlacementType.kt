@@ -1,5 +1,6 @@
 package com.example.wordsearch
 
+//Different ways words can be placed, and movements necessary to do that
 enum class PlacementType {
     leftRight,
     rightLeft,
