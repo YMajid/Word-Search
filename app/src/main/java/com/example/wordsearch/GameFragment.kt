@@ -23,6 +23,9 @@ class GameFragment: Fragment() {
         binding.gameViewModel = viewModel
 
         binding.setLifecycleOwner(this)
+        //TODO display words used
+        //TODO make grid look better
+        binding.letterGrid.data = viewModel.grid
 
         viewModel.eventGameFinished.observe(viewLifecycleOwner, Observer { hasFinished ->
             if (hasFinished) {

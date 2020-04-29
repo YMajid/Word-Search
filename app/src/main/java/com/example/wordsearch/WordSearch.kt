@@ -8,12 +8,13 @@ class WordSearch {
         PlacementType.topLeftBottomRight, PlacementType.topRightBottomLeft, PlacementType.bottomLeftTopRight, PlacementType.bottomRightTopLeft)
 
 
-    fun makeGrid(size: Int, words: List<String>) {
+    fun makeGrid(size: Int, words: List<String>): List<List<Char>> {
         val grid = MutableList(size) {MutableList<Char>(size) { ' ' } }
 
         placeAllWords(words, size, grid)
         fillSlots(grid)
         printGrid(grid)
+        return grid
     }
 
     private fun fillSlots(grid: MutableList<MutableList<Char>>) {
