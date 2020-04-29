@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.wordsearch.databinding.ScoreFragmentBinding
+import timber.log.Timber
 
 class ScoreFragment : Fragment() {
 
@@ -19,6 +20,7 @@ class ScoreFragment : Fragment() {
     private lateinit var viewModel: ScoreViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
+        Timber.i("Score screen is displayed.")
         binding = DataBindingUtil.inflate(inflater, R.layout.score_fragment, container, false)
 
         val scoreFragmentArgs by navArgs<ScoreFragmentArgs>()
@@ -30,6 +32,7 @@ class ScoreFragment : Fragment() {
 
         viewModel.playAgain.observe(viewLifecycleOwner, Observer { playAgain ->
             if (playAgain) {
+                Timber.i("Game being played again.")
                 findNavController().navigate(ScoreFragmentDirections.actionRestart())
                 viewModel.onPlayAgainComplete()
             }

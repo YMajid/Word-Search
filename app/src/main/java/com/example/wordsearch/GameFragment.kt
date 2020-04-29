@@ -18,13 +18,15 @@ class GameFragment: Fragment() {
     private lateinit var viewModel: GameViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        Timber.i("Game has started.")
         binding = DataBindingUtil.inflate(inflater, R.layout.game_fragment, container, false)
         viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
         binding.gameViewModel = viewModel
 
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
         //TODO display words used
         //TODO make grid look better
+        //Replacing what's in the View with the newest grid
         binding.letterGrid.data = viewModel.grid
 
         viewModel.eventGameFinished.observe(viewLifecycleOwner, Observer { hasFinished ->

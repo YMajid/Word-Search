@@ -10,6 +10,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.wordsearch.databinding.TitleFragmentBinding
+import timber.log.Timber
 
 class TitleFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -17,6 +18,7 @@ class TitleFragment: Fragment() {
         val binding: TitleFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.title_fragment, container, false)
 
         binding.playGameButton.setOnClickListener {
+            Timber.i("Play button clicked.")
             findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToGameFragment())
         }
 
