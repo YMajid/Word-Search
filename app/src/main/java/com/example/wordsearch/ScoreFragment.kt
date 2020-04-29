@@ -13,6 +13,9 @@ import androidx.navigation.fragment.navArgs
 import com.example.wordsearch.databinding.ScoreFragmentBinding
 import timber.log.Timber
 
+/**
+ * Fragment where the final score is shown, after the game is over
+ */
 class ScoreFragment : Fragment() {
 
     private lateinit var binding: ScoreFragmentBinding

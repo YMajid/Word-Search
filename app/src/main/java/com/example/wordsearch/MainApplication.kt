@@ -3,6 +3,9 @@ package com.example.wordsearch
 import android.app.Application
 import timber.log.Timber
 
+/**
+ * Overrides Application, used to implement Timber throughout the project
+ */
 class MainApplication: Application() {
 
     override fun onCreate() {

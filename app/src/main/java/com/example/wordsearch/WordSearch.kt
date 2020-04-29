@@ -4,16 +4,22 @@ class WordSearch {
 
     private val letters = "ABCDEFGHIJKLMOPQRSTUVWSYZ"
 
-    //Different placement types a word can take on. When called, this is shuffled so that different words are placed in different manners.
+    /**
+     * Different placement types a word can take on. When called, this is shuffled so that different words are placed in different manners.
+     */
     private val placementType = arrayListOf<PlacementType>(PlacementType.leftRight, PlacementType.rightLeft, PlacementType.upDown, PlacementType.downUp,
         PlacementType.topLeftBottomRight, PlacementType.topRightBottomLeft, PlacementType.bottomLeftTopRight, PlacementType.bottomRightTopLeft)
 
-    //Hacky way of returning list of words used to construct the grid.
+    /**
+     * Hacky way of returning list of words used to construct the grid.
+     */
     //TODO make less hacky
     lateinit var usedWordsList: List<String>
 
-    //Make the grid (2d list).
-    //It first makes an empty 2d mutable list, then it places all of the words that can fit in with random placements, anf finally it fills up the empty slots.
+    /**
+     * Make the grid (2d list).
+     * It first makes an empty 2d mutable list, then it places all of the words that can fit in with random placements, anf finally it fills up the empty slots.
+     */
     fun makeGrid(size: Int, words: List<String>): List<List<Char>> {
         val grid = MutableList(size) {MutableList<Char>(size) { ' ' } }
 
@@ -23,7 +29,9 @@ class WordSearch {
         return grid
     }
 
-    //Fills in the empty slots in the grid.
+    /**
+     * Fills in the empty slots in the grid.
+     */
     private fun fillSlots(grid: MutableList<MutableList<Char>>) {
         for (row in grid) {
             val rowIterator = row.listIterator()
@@ -35,7 +43,9 @@ class WordSearch {
         }
     }
 
-    //Prints grid - was used mainly for testing.
+    /**
+     * Prints grid - was used mainly for testing.
+     */
     private fun printGrid(grid: MutableList<MutableList<Char>>) {
         for (row in grid) {
             for (slot in row) {
@@ -45,8 +55,10 @@ class WordSearch {
         }
     }
 
-    //Looks for a slot based on coordinates and movement supplied.
-    //If the word fits, and all of the slots it will occupy are either empty or taken by matching characters, it will return true.
+    /**
+     * Looks for a slot based on coordinates and movement supplied.
+     * If the word fits, and all of the slots it will occupy are either empty or taken by matching characters, it will return true.
+     */
     private fun findSlot(x: Int, y:Int, word: String, movement: IntArray, grid: MutableList<MutableList<Char>>): Boolean {
         var xPosition = x
         var yPosition = y
@@ -68,8 +80,10 @@ class WordSearch {
         return true
     }
 
-    //If findSlot returns true, this places the word in that position on the grid.
-    //Given a word and it's placement type, it goes through slot by slot to check if the word can be placed and only stops once that's done, or all possibilites are exhausted.
+    /**
+     * If findSlot returns true, this places the word in that position on the grid.
+     * Given a word and it's placement type, it goes through slot by slot to check if the word can be placed and only stops once that's done, or all possibilities are exhausted.
+     */
     private fun tryPlacingWord(word: String, movement: IntArray, size: Int, grid: MutableList<MutableList<Char>>): Boolean {
 
         val xLength = movement[0]*(word.length)
@@ -100,9 +114,11 @@ class WordSearch {
         return false
     }
 
-    //Returns true if the word was placed in the grid, false if not.
-    //Goes through the different placement types until the word is put into the grid, or all possibilities are exhausted.
-    //The placement types are shuffled for each word.
+    /**
+     * Goes through the different placement types until the word is put into the grid, or all possibilities are exhausted.
+     * Returns true if the word was placed in the grid, false if not.
+     * The placement types are shuffled for each word.
+     */
     private fun placeWord(word: String, size: Int, grid: MutableList<MutableList<Char>>): Boolean {
         val formattedWord = word.toUpperCase()
 
@@ -115,8 +131,10 @@ class WordSearch {
         return false
     }
 
-    //Given a shuffled list of words, it tries to place the words into the grid. Returns a list of the used words.
-    //Limit set to 6 words per puzzle.
+    /**
+     * Given a shuffled list of words, it tries to place the words into the grid. Returns a list of the used words.
+     * Limit set to 6 words per puzzle.
+     */
     private fun placeAllWords(words: List<String>, size: Int, grid: MutableList<MutableList<Char>>): List<String> {
         val shuffledWords = words.shuffled()
         val usedWords = mutableListOf<String>()

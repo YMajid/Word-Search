@@ -86,7 +86,9 @@ class GameViewModel: ViewModel() {
         timer.start()
     }
 
-    //Returns grid and a string of words used
+    /**
+     * Returns grid and a string of words used
+     */
     private fun createGrid(size: Int, words: List<String>) {
         val wordSearch = WordSearch()
         grid = wordSearch.makeGrid(size, words)

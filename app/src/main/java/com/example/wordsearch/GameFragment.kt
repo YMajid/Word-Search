@@ -12,6 +12,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.wordsearch.databinding.GameFragmentBinding
 import timber.log.Timber
 
+/**
+ * Fragment where the game is played
+ */
 class GameFragment: Fragment() {
 
     private lateinit var binding: GameFragmentBinding

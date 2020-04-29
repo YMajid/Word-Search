@@ -9,6 +9,9 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.lifecycle.ViewModelProviders
 
+/**
+ * View used to display the puzzle
+ */
 class GridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : View(context, attrs, defStyleAttr) {
     private val tilePaint = Paint().apply {
         textAlign = Paint.Align.CENTER
