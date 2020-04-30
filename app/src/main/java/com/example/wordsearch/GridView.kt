@@ -6,8 +6,9 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.View
-import androidx.lifecycle.ViewModelProviders
+import timber.log.Timber
 
 /**
  * View used to display the puzzle
@@ -47,6 +48,30 @@ class GridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
                 canvas.drawText(char.toString(), horizontalCenterOfTile(column), verticalCenterOfTile(row), textPaint)
             }
         }
+    }
+
+    var startIndex: IntArray = intArrayOf(-1, -1)
+    var finishIndex: IntArray = intArrayOf(-1, -1)
+    var startX: Int = -1
+    var startY: Int = -1
+    var finishX: Int = -1
+    var finishY: Int = -1
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        when (event?.action) {
+            MotionEvent.ACTION_DOWN -> {
+                startX = GridBehavior(this).getColIndex(event.x.toInt())
+                startY = GridBehavior(this).getRowIndex(event.y.toInt())
+                startIndex = intArrayOf(startX, startY)
+            }
+            MotionEvent.ACTION_UP -> {
+                finishX = GridBehavior(this).getColIndex(event.x.toInt())
+                finishY = GridBehavior(this).getRowIndex(event.y.toInt())
+                finishIndex = intArrayOf(finishX, finishY)
+            }
+        }
+        Timber.i("startIndex: (${startIndex[0]}, ${startIndex[1]}), finishIndex: (${finishIndex[0]}, ${finishIndex[1]})")
+        return true
     }
 
     private fun horizontalCenterOfTile(column: Int) = (column * tileWidth()) + tileWidth() / 2
