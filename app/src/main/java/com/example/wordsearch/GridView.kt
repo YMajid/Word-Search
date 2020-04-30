@@ -43,7 +43,7 @@ class GridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
         super.onDraw(canvas)
         data.forEachIndexed { row, chars ->
             chars.forEachIndexed { column, char ->
-                canvas.drawRect(column * tileWidth(), row * tileHeight(), (column+1) * tileWidth(), (row+1) * tileHeight(), tilePaint)
+//                canvas.drawRect(column * tileWidth(), row * tileHeight(), (column+1) * tileWidth(), (row+1) * tileHeight(), tilePaint)
                 canvas.drawText(char.toString(), horizontalCenterOfTile(column), verticalCenterOfTile(row), textPaint)
             }
         }
