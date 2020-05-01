@@ -27,8 +27,6 @@ class GameFragment: Fragment() {
         binding.gameViewModel = viewModel
 
         binding.lifecycleOwner = this
-        //TODO display words used
-        //TODO make grid look better
         //Replacing what's in the View with the newest grid
         binding.letterGrid.data = viewModel.grid
 

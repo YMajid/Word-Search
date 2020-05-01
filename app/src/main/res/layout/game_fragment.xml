@@ -72,7 +72,7 @@
                 android:textColor="@color/black_text_color"
                 android:textSize="16sp"
                 android:textStyle="normal"
-                android:text="@{gameViewModel.usedWords}"
+                android:text="@{gameViewModel.usedWordString}"
                 tools:text="Look for: Kotlin, Swift, Java, ObjectiveC, Variable, Mobile"
                 app:layout_constraintTop_toBottomOf="@id/letter_grid"
                 app:layout_constraintEnd_toEndOf="parent"

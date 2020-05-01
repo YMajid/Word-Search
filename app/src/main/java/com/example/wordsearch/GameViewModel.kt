@@ -65,7 +65,7 @@ class GameViewModel: ViewModel() {
     private val gridSize = 10
 
     lateinit var grid: List<List<Char>>
-    lateinit var usedWords: String
+    lateinit var usedWordString: String
 
     init {
         _score.value = 0
@@ -92,7 +92,14 @@ class GameViewModel: ViewModel() {
     private fun createGrid(size: Int, words: List<String>) {
         val wordSearch = WordSearch()
         grid = wordSearch.makeGrid(size, words)
-        usedWords = "Look for: " + wordSearch.usedWordsList.joinToString()
+        usedWordString = "Look for: "
+        wordSearch.usedWordsList.forEachIndexed { index, word ->
+            usedWordString += if (index == 0) {
+                " ${word.word}"
+            } else {
+                ", ${word.word}"
+            }
+        }
     }
 
     fun onGameFinishComplete() {
