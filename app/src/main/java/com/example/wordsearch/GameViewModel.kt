@@ -32,7 +32,6 @@ class GameViewModel : ViewModel() {
     val eventGameFinished: LiveData<Boolean>
         get() = _eventGameFinished
 
-    //TODO add more words
     private val wordList = listOf(
         "Kotlin",
         "Swift",
@@ -49,8 +48,11 @@ class GameViewModel : ViewModel() {
         "Store",
         "Culture",
         "Merchant",
+        "Build",
         "Business",
         "Journey",
+        "Market",
+        "Explore",
         "Invest",
         "Software",
         "Powered",

@@ -23,5 +23,5 @@ enum class PlacementType {
             topRightBottomLeft -> intArrayOf(-1, 1)
             bottomLeftTopRight -> intArrayOf(1, -1)
             bottomRightTopLeft -> intArrayOf(-1, -1)
-    }
+        }
 }

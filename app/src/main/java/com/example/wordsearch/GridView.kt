@@ -46,9 +46,9 @@ class GridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
         textSize = 20f * Resources.getSystem().displayMetrics.scaledDensity
     }
 
-    private val selectedTilePaint = Paint().apply {
+    private var selectedTilePaint = Paint().apply {
         textAlign = Paint.Align.CENTER
-        color = Color.YELLOW
+//        color = Color.YELLOW
         style = Paint.Style.FILL
         textSize = 20f * Resources.getSystem().displayMetrics.scaledDensity
     }
@@ -72,29 +72,37 @@ class GridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
         }
 
     /**
+     * Highlights selected tile.
+     * Color green if selected string is correct, yellow is still selecting tiles.
+     * TODO find better colours
+     */
+    private fun highlightSelectedTiles(tile: Tile, canvas: Canvas, correct: Boolean) {
+        canvas.drawRect(
+            tile.column * tileWidth(),
+            tile.row * tileHeight(),
+            (tile.column + 1) * tileWidth(),
+            (tile.row + 1) * tileHeight(),
+            selectedTilePaint.apply {
+                color = if (correct) {
+                    Color.GREEN
+                } else {
+                    Color.YELLOW
+                }
+            }
+        )
+    }
+
+    /**
      * Puts in characters, draws grid and highlights selected strings.
      * TODO make prettier
-     * TODO reuse code for selected tiles
      */
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         selectedTiles.forEach { tile ->
-            canvas.drawRect(
-                tile.column * tileWidth(),
-                tile.row * tileHeight(),
-                (tile.column + 1) * tileWidth(),
-                (tile.row + 1) * tileHeight(),
-                selectedTilePaint
-            )
+            highlightSelectedTiles(tile, canvas, false)
         }
         correctSelectedTiles.forEach { tile ->
-            canvas.drawRect(
-                tile.column * tileWidth(),
-                tile.row * tileHeight(),
-                (tile.column + 1) * tileWidth(),
-                (tile.row + 1) * tileHeight(),
-                selectedTilePaint
-            )
+            highlightSelectedTiles(tile, canvas, true)
         }
         tiles.forEach { tile ->
             canvas.drawRect(
@@ -130,6 +138,7 @@ class GridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
      * selected into the wordFound method.
      * TODO if selected word is wrong, unhighlight right away.
      * TODO fix selecting diagonal words.
+     * TODO fix selecting if moving too fast.
      */
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
         when (event?.action) {

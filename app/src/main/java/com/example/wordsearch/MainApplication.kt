@@ -6,7 +6,7 @@ import timber.log.Timber
 /**
  * Overrides Application, used to implement Timber throughout the project
  */
-class MainApplication: Application() {
+class MainApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()

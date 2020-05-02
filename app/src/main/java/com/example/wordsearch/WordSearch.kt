@@ -1,6 +1,5 @@
 import com.example.wordsearch.PlacementType
 import com.example.wordsearch.Word
-import timber.log.Timber
 
 class WordSearch {
 
@@ -9,8 +8,16 @@ class WordSearch {
     /**
      * Different placement types a word can take on. When called, this is shuffled so that different words are placed in different manners.
      */
-    private val placementType = arrayListOf<PlacementType>(PlacementType.leftRight, PlacementType.rightLeft, PlacementType.upDown, PlacementType.downUp,
-        PlacementType.topLeftBottomRight, PlacementType.topRightBottomLeft, PlacementType.bottomLeftTopRight, PlacementType.bottomRightTopLeft)
+    private val placementType = arrayListOf<PlacementType>(
+        PlacementType.leftRight,
+        PlacementType.rightLeft,
+        PlacementType.upDown,
+        PlacementType.downUp,
+        PlacementType.topLeftBottomRight,
+        PlacementType.topRightBottomLeft,
+        PlacementType.bottomLeftTopRight,
+        PlacementType.bottomRightTopLeft
+    )
 
     /**
      * Return a list of words used to construct the puzzle.
@@ -22,7 +29,7 @@ class WordSearch {
      * It first makes an empty 2d mutable list, then it places all of the words that can fit in with random placements, anf finally it fills up the empty slots.
      */
     fun makeGrid(size: Int, words: List<String>): List<List<Char>> {
-        val grid = MutableList(size) {MutableList<Char>(size) { ' ' } }
+        val grid = MutableList(size) { MutableList<Char>(size) { ' ' } }
 
         placeAllWords(words, size, grid)
         fillSlots(grid)
@@ -60,7 +67,13 @@ class WordSearch {
      * Looks for a slot based on coordinates and movement supplied.
      * If the word fits, and all of the slots it will occupy are either empty or taken by matching characters, it will return true.
      */
-    private fun findEmptySection(x: Int, y:Int, word: String, movement: IntArray, grid: MutableList<MutableList<Char>>): Boolean {
+    private fun findEmptySection(
+        x: Int,
+        y: Int,
+        word: String,
+        movement: IntArray,
+        grid: MutableList<MutableList<Char>>
+    ): Boolean {
         var xPosition = x
         var yPosition = y
 
@@ -88,16 +101,16 @@ class WordSearch {
      */
     private fun placeWord(word: String, movement: IntArray, size: Int, grid: MutableList<MutableList<Char>>): Boolean {
 
-        val xLength = movement[0]*(word.length)
-        val yLength = movement[1]*(word.length)
+        val xLength = movement[0] * (word.length)
+        val yLength = movement[1] * (word.length)
 
         val rows = (0..size).shuffled()
         val columns = (0..size).shuffled()
 
         for (row in rows) {
             for (column in columns) {
-                val xFinal = xLength+row
-                val yFinal = yLength+column
+                val xFinal = xLength + row
+                val yFinal = yLength + column
 
                 if ((xFinal in 0..size) && (yFinal in 0..size)) {
                     if (findEmptySection(column, row, word, movement, grid)) {
@@ -143,7 +156,7 @@ class WordSearch {
      * Limit set to 6 words per puzzle.
      * TODO combine with previous method
      */
-    private fun placeAllWords(words: List<String>, size: Int, grid: MutableList<MutableList<Char>>){
+    private fun placeAllWords(words: List<String>, size: Int, grid: MutableList<MutableList<Char>>) {
         val shuffledWords = words.shuffled()
         val usedWords = mutableListOf<String>()
         var wordCount = 0
