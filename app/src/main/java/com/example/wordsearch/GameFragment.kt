@@ -15,7 +15,7 @@ import timber.log.Timber
 /**
  * Fragment where the game is played
  */
-class GameFragment: Fragment() {
+class GameFragment : Fragment() {
 
     private lateinit var binding: GameFragmentBinding
     private lateinit var viewModel: GameViewModel

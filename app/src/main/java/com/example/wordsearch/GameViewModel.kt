@@ -1,14 +1,14 @@
 package com.example.wordsearch
 
-import androidx.lifecycle.ViewModel
 import WordSearch
 import android.os.CountDownTimer
 import android.text.format.DateUtils
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
 
-class GameViewModel: ViewModel() {
+class GameViewModel : ViewModel() {
 
     //TODO increase game time
     companion object {
@@ -65,6 +65,7 @@ class GameViewModel: ViewModel() {
     private val gridSize = 10
 
     lateinit var grid: List<List<Char>>
+    lateinit var usedWordsList: List<Word>
     lateinit var usedWordString: String
 
     init {
@@ -72,9 +73,9 @@ class GameViewModel: ViewModel() {
         _eventGameFinished.value = false
         createGrid(gridSize, wordList)
 
-        timer = object  : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
+        timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
             override fun onTick(millisUntilFinished: Long) {
-                _currentTime.value = (millisUntilFinished)/ONE_SECOND
+                _currentTime.value = (millisUntilFinished) / ONE_SECOND
             }
 
             override fun onFinish() {
@@ -92,12 +93,27 @@ class GameViewModel: ViewModel() {
     private fun createGrid(size: Int, words: List<String>) {
         val wordSearch = WordSearch()
         grid = wordSearch.makeGrid(size, words)
+        usedWordsList = wordSearch.usedWordsList
         usedWordString = "Look for: "
         wordSearch.usedWordsList.forEachIndexed { index, word ->
             usedWordString += if (index == 0) {
                 " ${word.word}"
             } else {
                 ", ${word.word}"
+            }
+        }
+    }
+
+    /**
+     * Compares user's touch input with the word positions.
+     * If one matches, it changes the word's boolean value to true and increments score by 1.
+     */
+    fun wordFound(startPosition: IntArray, finishPosition: IntArray) {
+        for (word in usedWordsList) {
+            if (!word.found && (word.start.contentEquals(startPosition) && word.finish.contentEquals(finishPosition))) {
+                word.found = true
+                _score.value?.plus(1)
+                break
             }
         }
     }
