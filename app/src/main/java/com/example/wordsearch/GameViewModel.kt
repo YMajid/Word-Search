@@ -1,20 +1,19 @@
 package com.example.wordsearch
 
-import androidx.lifecycle.ViewModel
 import WordSearch
 import android.os.CountDownTimer
 import android.text.format.DateUtils
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
 
-class GameViewModel: ViewModel() {
+class GameViewModel : ViewModel() {
 
-    //TODO increase game time
     companion object {
         const val DONE = 0L
         const val ONE_SECOND = 1000L
-        const val COUNTDOWN_TIME = 10000L
+        const val COUNTDOWN_TIME = 60000L
     }
 
     private val timer: CountDownTimer
@@ -27,10 +26,7 @@ class GameViewModel: ViewModel() {
         DateUtils.formatElapsedTime(time)
     }
 
-    //TODO keep track of score
-    private val _score = MutableLiveData<Int>()
-    val score: LiveData<Int>
-        get() = _score
+    var score = 0
 
     private val _eventGameFinished = MutableLiveData<Boolean>()
     val eventGameFinished: LiveData<Boolean>
@@ -65,16 +61,16 @@ class GameViewModel: ViewModel() {
     private val gridSize = 10
 
     lateinit var grid: List<List<Char>>
-    lateinit var usedWords: String
+    lateinit var usedWordsList: List<Word>
+    lateinit var usedWordString: String
 
     init {
-        _score.value = 0
         _eventGameFinished.value = false
         createGrid(gridSize, wordList)
 
-        timer = object  : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
+        timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
             override fun onTick(millisUntilFinished: Long) {
-                _currentTime.value = (millisUntilFinished)/ONE_SECOND
+                _currentTime.value = (millisUntilFinished) / ONE_SECOND
             }
 
             override fun onFinish() {
@@ -87,12 +83,20 @@ class GameViewModel: ViewModel() {
     }
 
     /**
-     * Returns grid and a string of words used
+     * Returns the puzzle, a list and string of the words used.
      */
     private fun createGrid(size: Int, words: List<String>) {
         val wordSearch = WordSearch()
         grid = wordSearch.makeGrid(size, words)
-        usedWords = "Look for: " + wordSearch.usedWordsList.joinToString()
+        usedWordsList = wordSearch.usedWordsList
+        usedWordString = "Look for: "
+        wordSearch.usedWordsList.forEachIndexed { index, word ->
+            usedWordString += if (index == 0) {
+                " ${word.word}"
+            } else {
+                ", ${word.word}"
+            }
+        }
     }
 
     fun onGameFinishComplete() {

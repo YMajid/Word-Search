@@ -15,7 +15,7 @@ import timber.log.Timber
 /**
  * Fragment where the game is played
  */
-class GameFragment: Fragment() {
+class GameFragment : Fragment() {
 
     private lateinit var binding: GameFragmentBinding
     private lateinit var viewModel: GameViewModel
@@ -27,15 +27,14 @@ class GameFragment: Fragment() {
         binding.gameViewModel = viewModel
 
         binding.lifecycleOwner = this
-        //TODO display words used
-        //TODO make grid look better
-        //Replacing what's in the View with the newest grid
+        //Replacing what's in the View with the newest grid & giving used words list to the view
         binding.letterGrid.data = viewModel.grid
+        binding.letterGrid.usedWordsList = viewModel.usedWordsList
 
         viewModel.eventGameFinished.observe(viewLifecycleOwner, Observer { hasFinished ->
             if (hasFinished) {
                 Timber.i("Game has finished.")
-                val currentScore = viewModel.score.value ?: 0
+                val currentScore = binding.letterGrid.score.value ?: 0
                 val action = GameFragmentDirections.actionGameFragmentToScoreFragment(currentScore)
                 findNavController().navigate(action)
                 viewModel.onGameFinishComplete()
