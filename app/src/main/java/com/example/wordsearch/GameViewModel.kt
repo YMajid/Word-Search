@@ -10,11 +10,10 @@ import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel() {
 
-    //TODO increase game time
     companion object {
         const val DONE = 0L
         const val ONE_SECOND = 1000L
-        const val COUNTDOWN_TIME = 10000L
+        const val COUNTDOWN_TIME = 60000L
     }
 
     private val timer: CountDownTimer
@@ -27,10 +26,7 @@ class GameViewModel : ViewModel() {
         DateUtils.formatElapsedTime(time)
     }
 
-    //TODO keep track of score
-    private val _score = MutableLiveData<Int>()
-    val score: LiveData<Int>
-        get() = _score
+    var score = 0
 
     private val _eventGameFinished = MutableLiveData<Boolean>()
     val eventGameFinished: LiveData<Boolean>
@@ -69,7 +65,6 @@ class GameViewModel : ViewModel() {
     lateinit var usedWordString: String
 
     init {
-        _score.value = 0
         _eventGameFinished.value = false
         createGrid(gridSize, wordList)
 
@@ -88,7 +83,7 @@ class GameViewModel : ViewModel() {
     }
 
     /**
-     * Returns grid and a string of words used
+     * Returns the puzzle, a list and string of the words used.
      */
     private fun createGrid(size: Int, words: List<String>) {
         val wordSearch = WordSearch()
@@ -100,20 +95,6 @@ class GameViewModel : ViewModel() {
                 " ${word.word}"
             } else {
                 ", ${word.word}"
-            }
-        }
-    }
-
-    /**
-     * Compares user's touch input with the word positions.
-     * If one matches, it changes the word's boolean value to true and increments score by 1.
-     */
-    fun wordFound(startPosition: IntArray, finishPosition: IntArray) {
-        for (word in usedWordsList) {
-            if (!word.found && (word.start.contentEquals(startPosition) && word.finish.contentEquals(finishPosition))) {
-                word.found = true
-                _score.value?.plus(1)
-                break
             }
         }
     }

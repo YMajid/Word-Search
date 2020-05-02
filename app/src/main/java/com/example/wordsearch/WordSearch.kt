@@ -15,7 +15,7 @@ class WordSearch {
     /**
      * Return a list of words used to construct the puzzle.
      */
-    val usedWordsList = MutableList<Word>(0) { Word("", intArrayOf(0,0), intArrayOf(0,0)) }
+    val usedWordsList = MutableList<Word>(0) { Word("", false) }
 
     /**
      * Make the grid (2d list).
@@ -104,18 +104,13 @@ class WordSearch {
                         var xPosition = column
                         var yPosition = row
 
-                        val startPosition = intArrayOf(xPosition, yPosition)
-
                         word.forEach { letter ->
                             grid[xPosition][yPosition] = letter
                             xPosition += movement[0]
                             yPosition += movement[1]
                         }
 
-                        val finalPosition = intArrayOf(xPosition-movement[0], yPosition-movement[1])
-                        usedWordsList.add(Word(word, startPosition, finalPosition))
-
-                        Timber.i("$word begins at (${startPosition[0]}, ${startPosition[1]}) and ends at (${finalPosition[0]}, ${finalPosition[1]}).")
+                        usedWordsList.add(Word(word, false))
 
                         return true
                     }
