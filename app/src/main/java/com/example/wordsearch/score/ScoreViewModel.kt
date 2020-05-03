@@ -1,4 +1,4 @@
-package com.example.wordsearch
+package com.example.wordsearch.score
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

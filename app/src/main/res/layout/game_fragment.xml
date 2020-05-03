@@ -7,16 +7,16 @@
     <data>
         <variable
                 name="gameViewModel"
-                type="com.example.wordsearch.GameViewModel"/>
+                type="com.example.wordsearch.game.GameViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/game_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".GameFragment">
+            tools:context=".game.GameFragment">
 
-        <com.example.wordsearch.GridView
+        <com.example.wordsearch.custom.GridView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_margin="32dp"

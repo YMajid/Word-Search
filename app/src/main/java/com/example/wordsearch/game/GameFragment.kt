@@ -1,4 +1,4 @@
-package com.example.wordsearch
+package com.example.wordsearch.game
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.example.wordsearch.R
 import com.example.wordsearch.databinding.GameFragmentBinding
 import timber.log.Timber
 
@@ -22,7 +23,8 @@ class GameFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Timber.i("Game has started.")
-        binding = DataBindingUtil.inflate(inflater, R.layout.game_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater,
+            R.layout.game_fragment, container, false)
         viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
         binding.gameViewModel = viewModel
 

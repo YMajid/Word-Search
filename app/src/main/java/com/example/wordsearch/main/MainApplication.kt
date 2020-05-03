@@ -1,4 +1,4 @@
-package com.example.wordsearch
+package com.example.wordsearch.main
 
 import android.app.Application
 import timber.log.Timber

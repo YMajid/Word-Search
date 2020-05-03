@@ -4,18 +4,18 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/main_navigation"
         app:startDestination="@id/titleFragment">
-    <fragment android:id="@+id/titleFragment" android:name="com.example.wordsearch.TitleFragment"
+    <fragment android:id="@+id/titleFragment" android:name="com.example.wordsearch.title.TitleFragment"
               android:label="TitleFragment">
         <action android:id="@+id/action_titleFragment_to_gameFragment" app:destination="@id/gameFragment"
                 app:enterAnim="@anim/fade_in" app:popUpTo="@id/titleFragment" app:popExitAnim="@anim/fade_out"/>
     </fragment>
-    <fragment android:id="@+id/gameFragment" android:name="com.example.wordsearch.GameFragment"
+    <fragment android:id="@+id/gameFragment" android:name="com.example.wordsearch.game.GameFragment"
               android:label="GameFragment">
         <action android:id="@+id/action_gameFragment_to_scoreFragment" app:destination="@id/scoreFragment"
                 app:launchSingleTop="true" app:popUpTo="@id/gameFragment" app:popUpToInclusive="true"
                 app:enterAnim="@anim/fade_in" app:popExitAnim="@anim/fade_out"/>
     </fragment>
-    <fragment android:id="@+id/scoreFragment" android:name="com.example.wordsearch.ScoreFragment"
+    <fragment android:id="@+id/scoreFragment" android:name="com.example.wordsearch.score.ScoreFragment"
               android:label="ScoreFragment">
         <action android:id="@+id/action_restart" app:destination="@id/gameFragment" app:enterAnim="@anim/fade_in"
                 app:popExitAnim="@anim/fade_out"/>

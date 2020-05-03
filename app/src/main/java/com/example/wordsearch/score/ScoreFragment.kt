@@ -1,4 +1,4 @@
-package com.example.wordsearch
+package com.example.wordsearch.score
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.wordsearch.R
 import com.example.wordsearch.databinding.ScoreFragmentBinding
 import timber.log.Timber
 
@@ -24,11 +25,13 @@ class ScoreFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Timber.i("Score screen is displayed.")
-        binding = DataBindingUtil.inflate(inflater, R.layout.score_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater,
+            R.layout.score_fragment, container, false)
 
         val scoreFragmentArgs by navArgs<ScoreFragmentArgs>()
 
-        viewModelFactory = ScoreViewModelFactory(scoreFragmentArgs.score)
+        viewModelFactory =
+            ScoreViewModelFactory(scoreFragmentArgs.score)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ScoreViewModel::class.java)
 
         binding.scoreViewModel = viewModel

@@ -1,4 +1,4 @@
-package com.example.wordsearch
+package com.example.wordsearch.custom
 
 import android.content.Context
 import android.content.res.Resources
@@ -11,6 +11,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.wordsearch.R
+import com.example.wordsearch.wordPlacement.Word
 import timber.log.Timber
 
 /**
@@ -70,7 +72,7 @@ class GridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
         }
 
     /**
-     * Highlights selected tile.
+     * Highlights selected tiles.
      * Color blue if selected string is correct, color yellow if user is still selecting tiles.
      */
     private fun highlightSelectedTiles(tile: Tile, canvas: Canvas, correct: Boolean) {

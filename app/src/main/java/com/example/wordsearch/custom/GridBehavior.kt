@@ -1,4 +1,4 @@
-package com.example.wordsearch
+package com.example.wordsearch.custom
 
 import android.view.View
 import androidx.core.view.marginLeft
@@ -8,7 +8,6 @@ import kotlin.math.round
 
 /**
  * Get's coordinates where user touched the screen.
- * TODO works best when touching only the edge of the tile
  */
 class GridBehavior(view: View) {
 

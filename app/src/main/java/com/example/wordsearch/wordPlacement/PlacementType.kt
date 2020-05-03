@@ -1,4 +1,4 @@
-package com.example.wordsearch
+package com.example.wordsearch.wordPlacement
 
 /**
  * Different ways words can be placed, and movements necessary to do that.

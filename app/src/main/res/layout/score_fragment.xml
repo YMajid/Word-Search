@@ -7,14 +7,14 @@
     <data>
         <variable
                 name="scoreViewModel"
-                type="com.example.wordsearch.ScoreViewModel"/>
+                type="com.example.wordsearch.score.ScoreViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/score_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ScoreFragment">
+            tools:context=".score.ScoreFragment">
 
         <TextView
                 android:id="@+id/you_scored_text"

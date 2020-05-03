@@ -1,7 +1,8 @@
-package com.example.wordsearch
+package com.example.wordsearch.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.wordsearch.R
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.example.wordsearch
+package com.example.wordsearch.game
 
 import WordSearch
 import android.os.CountDownTimer
@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.example.wordsearch.wordPlacement.Word
 
 class GameViewModel : ViewModel() {
 
@@ -70,7 +71,10 @@ class GameViewModel : ViewModel() {
         _eventGameFinished.value = false
         createGrid(gridSize, wordList)
 
-        timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
+        timer = object : CountDownTimer(
+            COUNTDOWN_TIME,
+            ONE_SECOND
+        ) {
             override fun onTick(millisUntilFinished: Long) {
                 _currentTime.value = (millisUntilFinished) / ONE_SECOND
             }

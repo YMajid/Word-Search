@@ -1,5 +1,5 @@
-import com.example.wordsearch.PlacementType
-import com.example.wordsearch.Word
+import com.example.wordsearch.wordPlacement.PlacementType
+import com.example.wordsearch.wordPlacement.Word
 
 class WordSearch {
 
@@ -22,7 +22,12 @@ class WordSearch {
     /**
      * Return a list of words used to construct the puzzle.
      */
-    val usedWordsList = MutableList<Word>(0) { Word("", false) }
+    val usedWordsList = MutableList<Word>(0) {
+        Word(
+            "",
+            false
+        )
+    }
 
     /**
      * Make the grid (2d list).
