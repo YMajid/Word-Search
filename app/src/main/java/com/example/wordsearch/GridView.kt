@@ -27,7 +27,6 @@ class GridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
 
     /**
      * Communicates score to the score fragment.
-     * TODO look for a better way of doing this
      */
     private val _score = MutableLiveData<Int>()
     val score: LiveData<Int>
@@ -48,7 +47,6 @@ class GridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
 
     private var selectedTilePaint = Paint().apply {
         textAlign = Paint.Align.CENTER
-//        color = Color.YELLOW
         style = Paint.Style.FILL
         textSize = 20f * Resources.getSystem().displayMetrics.scaledDensity
     }
@@ -136,7 +134,6 @@ class GridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
     /**
      * Selects the tiles where the user touched the screen. Once the user lifts their finger, it passes the string
      * selected into the wordFound method.
-     * TODO if selected word is wrong, unhighlight right away.
      * TODO fix selecting diagonal words.
      * TODO fix selecting if moving too fast.
      */
@@ -161,6 +158,7 @@ class GridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
                 }
                 selectedTiles.clear()
                 stringSelection = ""
+                invalidate()
             }
         }
         return true
@@ -202,14 +200,14 @@ class GridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
         "DAYUMMMM",
         "SMART ONE EHH",
         "MY YUTEEE",
-        "PREEING IT I SEEEEE"
+        "AHHH YEAH"
     )
 
     private val foundStringSelected = listOf<String>(
         "find something else yo",
         "maybe find another one??",
         "there's other words...",
-        "move on g"
+        "move on..."
     )
 
     private val wrongStringSelected = listOf<String>(
