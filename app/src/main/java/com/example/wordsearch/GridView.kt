@@ -53,7 +53,7 @@ class GridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
 
     private val textPaint = Paint().apply {
         textAlign = Paint.Align.CENTER
-        color = Color.BLACK
+        color = resources.getColor(R.color.navyTextColor)
         textSize = 20f * Resources.getSystem().displayMetrics.scaledDensity
     }
 
@@ -71,8 +71,7 @@ class GridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
 
     /**
      * Highlights selected tile.
-     * Color green if selected string is correct, yellow is still selecting tiles.
-     * TODO find better colours
+     * Color blue if selected string is correct, color yellow if user is still selecting tiles.
      */
     private fun highlightSelectedTiles(tile: Tile, canvas: Canvas, correct: Boolean) {
         canvas.drawRect(
@@ -82,9 +81,9 @@ class GridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
             (tile.row + 1) * tileHeight(),
             selectedTilePaint.apply {
                 color = if (correct) {
-                    Color.GREEN
+                    resources.getColor(R.color.correctBlue)
                 } else {
-                    Color.YELLOW
+                    resources.getColor(R.color.selectingYellow)
                 }
             }
         )
@@ -92,7 +91,6 @@ class GridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
 
     /**
      * Puts in characters, draws grid and highlights selected strings.
-     * TODO make prettier
      */
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -103,13 +101,13 @@ class GridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
             highlightSelectedTiles(tile, canvas, true)
         }
         tiles.forEach { tile ->
-            canvas.drawRect(
-                tile.column * tileWidth(),
-                tile.row * tileHeight(),
-                (tile.column + 1) * tileWidth(),
-                (tile.row + 1) * tileHeight(),
-                tilePaint
-            )
+//            canvas.drawRect(
+//                tile.column * tileWidth(),
+//                tile.row * tileHeight(),
+//                (tile.column + 1) * tileWidth(),
+//                (tile.row + 1) * tileHeight(),
+//                tilePaint
+//            )
             canvas.drawText(
                 tile.character.toString(),
                 horizontalCenterOfTile(tile.column),

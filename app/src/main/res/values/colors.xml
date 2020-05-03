@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
-    <color name="black_text_color">#de000000</color>
-    <color name="grey_text_color">#99000000</color>
-    <color name="grey_button_color">#606060</color>
+<!--    App Colours-->
+    <color name="colorPrimary">#3498db</color>
+    <color name="colorPrimaryDark">#2980b9</color>
+    <color name="colorAccent">#e74c3c</color>
+
+<!--    Text Colours-->
+    <color name="navyTextColor">#2c3e50</color>
+    <color name="greyTextColor">#7f8c8d</color>
+    <color name="whiteTextColor">#ecf0f1</color>
+
+<!--    String Highlight-->
+    <color name="correctBlue">#B33498DB</color>
+    <color name="selectingYellow">#B3F1C40F</color>
 </resources>

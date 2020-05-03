@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/hind_medium"
                 android:text="@string/get_ready"
-                android:textColor="@color/black_text_color"
+                android:textColor="@color/navyTextColor"
                 android:textSize="14sp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toTopOf="@+id/title_text"
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/hind_semibold"
                 android:text="@string/find_words"
-                android:textColor="@color/black_text_color"
+                android:textColor="@color/navyTextColor"
                 android:textSize="34sp"
                 android:layout_marginTop="4dp"
                 android:textStyle="normal"
@@ -49,11 +49,13 @@
 
         <Button
                 android:id="@+id/play_game_button"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
                 android:fontFamily="@font/hind_semibold"
                 android:text="@string/play"
+                android:textColor="@color/whiteTextColor"
+                android:background="@drawable/btn_rounded"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
