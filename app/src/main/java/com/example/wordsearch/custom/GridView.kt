@@ -16,7 +16,7 @@ import com.example.wordsearch.wordPlacement.Word
 import timber.log.Timber
 
 /**
- * View used to display the puzzle
+ * View used to display the puzzle.
  */
 class GridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
     View(context, attrs, defStyleAttr), View.OnTouchListener {
