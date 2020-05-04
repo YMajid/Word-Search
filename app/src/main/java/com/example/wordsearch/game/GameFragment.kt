@@ -33,6 +33,22 @@ class GameFragment : Fragment() {
         binding.letterGrid.data = viewModel.grid
         binding.letterGrid.usedWordsList = viewModel.usedWordsList
 
+        /**
+         * Finish game if score hits 6 (all words found).
+         */
+        binding.letterGrid.score.observe(viewLifecycleOwner, Observer { gameScore ->
+            if (gameScore == 6) {
+                Timber.i("Game has finished.")
+                val currentScore = binding.letterGrid.score.value ?: 0
+                val action = GameFragmentDirections.actionGameFragmentToScoreFragment(currentScore)
+                findNavController().navigate(action)
+                viewModel.onGameFinishComplete()
+            }
+        })
+
+        /**
+         * Finish game if timer runs out.
+         */
         viewModel.eventGameFinished.observe(viewLifecycleOwner, Observer { hasFinished ->
             if (hasFinished) {
                 Timber.i("Game has finished.")

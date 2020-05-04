@@ -2,6 +2,18 @@
 
 Hey! Hope that all is going well 🤠 This is my submission for the Mobile Development Shopify Coding Challenge 🚀
 
+## Requirements 📃
+- [X] Create a word search mobile app for Android
+- [X] The word search should have at least a 10x10 grid
+- [X] Include at least the following 6 words: Swift, Kotlin, ObjectiveC, Variable, Java, Mobile
+- [X] Keep track of how many words a user has found
+- [X] Make sure it compiles successfully
+- [X] Randomize where the words are placed
+- [X] Make a slick UI with smooth animations
+- [ ] Make it look good in portrait and landscape
+- [X] Feel free to add any additional features you can think of
+- [X] Allow the user to find the words by swiping over the words
+
 ## Project Structure 🗃️
 The project is split into the following components:
 - `/custom`
