@@ -1,5 +1,6 @@
 import com.example.wordsearch.wordPlacement.PlacementType
 import com.example.wordsearch.wordPlacement.Word
+import timber.log.Timber
 
 class WordSearch {
 
@@ -8,7 +9,7 @@ class WordSearch {
     /**
      * Different placement types a word can take on. When called, this is shuffled so that different words are placed in different manners.
      */
-    private val placementType = arrayListOf<PlacementType>(
+    private val placementTypes = arrayListOf<PlacementType>(
         PlacementType.leftRight,
         PlacementType.rightLeft,
         PlacementType.upDown,
@@ -36,9 +37,10 @@ class WordSearch {
     fun makeGrid(size: Int, words: List<String>): List<List<Char>> {
         val grid = MutableList(size) { MutableList<Char>(size) { ' ' } }
 
-        placeAllWords(words, size, grid)
+        placeWordList(words, size, grid)
         fillSlots(grid)
 //        printGrid(grid)
+        Timber.i("The grid is built.")
         return grid
     }
 
@@ -70,7 +72,7 @@ class WordSearch {
 
     /**
      * Looks for a slot based on coordinates and movement supplied.
-     * If the word fits, and all of the slots it will occupy are either empty or taken by matching characters, it will return true.
+     * If the word fits (e.g. all of the slots it will occupy are either empty or taken by matching characters), it will return true.
      */
     private fun findEmptySection(
         x: Int,
@@ -100,6 +102,7 @@ class WordSearch {
     }
 
     /**
+     * Tries to insert word into a random position on the grid.
      * If findEmptySection returns true, this places the word in that position on the grid.
      * Given a word and it's placement type, it goes through slot by slot to check if the word can be placed and only stops once that's done, or all possibilities are exhausted.
      * Fills usedWordsList the words, their start and end coordinates on the grid.
@@ -139,39 +142,26 @@ class WordSearch {
     }
 
     /**
+     * Given a list of words, it tries to place the words into the grid.
      * Goes through the different placement types until the word is put into the grid, or all possibilities are exhausted.
-     * Returns true if the word was placed in the grid, false if not.
-     * The placement types are shuffled for each word.
-     * TODO combine with next method
-     */
-    private fun placeWordList(word: String, size: Int, grid: MutableList<MutableList<Char>>): Boolean {
-        val formattedWord = word.toUpperCase()
-
-        for (type in placementType.shuffled()) {
-            //TODO Refactor movement function
-            if (placeWord(formattedWord, type.movement(type), size, grid)) {
-                return true
-            }
-        }
-        return false
-    }
-
-    /**
-     * Given a shuffled list of words, it tries to place the words into the grid. Returns a list of the used words.
+     * The word list and placement types both are shuffled.
      * Limit set to 6 words per puzzle.
-     * TODO combine with previous method
      */
-    private fun placeAllWords(words: List<String>, size: Int, grid: MutableList<MutableList<Char>>) {
-        val shuffledWords = words.shuffled()
-        val usedWords = mutableListOf<String>()
+    private fun placeWordList(wordList: List<String>, size: Int, grid: MutableList<MutableList<Char>>) {
+        val shuffledWordList = wordList.shuffled()
         var wordCount = 0
 
-        for (word in shuffledWords) {
-            if (placeWordList(word, size, grid)) {
-                usedWords.add(word)
-                wordCount++
+        for (word in shuffledWordList) {
+            val formattedWord = word.toUpperCase()
+            val shuffledPlacementTypes = placementTypes.shuffled()
+            for (placementType in shuffledPlacementTypes) {
+                if (placeWord(formattedWord, placementType.movement(placementType), size, grid)) {
+                    wordCount++
+                    break
+                }
             }
             if (wordCount == 6) {
+                Timber.i("The 6 words are placed.")
                 break
             }
         }
