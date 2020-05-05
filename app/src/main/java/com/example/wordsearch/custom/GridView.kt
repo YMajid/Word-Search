@@ -134,8 +134,6 @@ class GridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
     /**
      * Selects the tiles where the user touched the screen. Once the user lifts their finger, it passes the string
      * selected into the wordFound method.
-     * TODO fix selecting diagonal words.
-     * TODO fix selecting if moving too fast.
      */
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
         when (event?.action) {

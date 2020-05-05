@@ -69,7 +69,7 @@ class GameViewModel : ViewModel() {
 
     init {
         _eventGameFinished.value = false
-        createGrid(gridSize, wordList)
+        createPuzzle(gridSize, wordList)
 
         timer = object : CountDownTimer(
             COUNTDOWN_TIME,
@@ -91,9 +91,9 @@ class GameViewModel : ViewModel() {
     /**
      * Returns the puzzle, a list and string of the words used.
      */
-    private fun createGrid(size: Int, words: List<String>) {
+    private fun createPuzzle(size: Int, words: List<String>) {
         val wordSearch = WordSearch()
-        grid = wordSearch.makeGrid(size, words)
+        grid = wordSearch.createGrid(size, words)
         usedWordsList = wordSearch.usedWordsList
         usedWordString = "Look for: "
         wordSearch.usedWordsList.forEachIndexed { index, word ->

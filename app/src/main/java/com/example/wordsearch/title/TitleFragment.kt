@@ -12,7 +12,7 @@ import com.example.wordsearch.databinding.TitleFragmentBinding
 import timber.log.Timber
 
 /**
- * Fragment for the starting or title screen of the app
+ * Fragment for the starting or title screen of the app.
  */
 class TitleFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

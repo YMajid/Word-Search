@@ -15,7 +15,7 @@ import com.example.wordsearch.databinding.ScoreFragmentBinding
 import timber.log.Timber
 
 /**
- * Fragment where the final score is shown, after the game is over
+ * Fragment where the final score is shown, after the game is over.
  */
 class ScoreFragment : Fragment() {
 

@@ -2,8 +2,15 @@ import com.example.wordsearch.wordPlacement.PlacementType
 import com.example.wordsearch.wordPlacement.Word
 import timber.log.Timber
 
+/**
+ * Class used to create the puzzle.
+ * Creates a grid with 6 words randomly chosen from a list passed into the createGrid method.
+ */
 class WordSearch {
 
+    /**
+     * All letters of the alphabet.
+     */
     private val letters = "ABCDEFGHIJKLMOPQRSTUVWSYZ"
 
     /**
@@ -32,14 +39,13 @@ class WordSearch {
 
     /**
      * Make the grid (2d list).
-     * It first makes an empty 2d mutable list, then it places all of the words that can fit in with random placements, anf finally it fills up the empty slots.
+     * It first makes an empty 2d mutable list, then it places all of the words that can fit in with random placements, and finally it fills up the empty slots.
      */
-    fun makeGrid(size: Int, words: List<String>): List<List<Char>> {
+    fun createGrid(size: Int, words: List<String>): List<List<Char>> {
         val grid = MutableList(size) { MutableList<Char>(size) { ' ' } }
 
         placeWordList(words, size, grid)
         fillSlots(grid)
-//        printGrid(grid)
         Timber.i("The grid is built.")
         return grid
     }
@@ -55,18 +61,6 @@ class WordSearch {
                     rowIterator.set(letters.random())
                 }
             }
-        }
-    }
-
-    /**
-     * Prints grid - was used mainly for testing.
-     */
-    private fun printGrid(grid: MutableList<MutableList<Char>>) {
-        for (row in grid) {
-            for (slot in row) {
-                print(slot)
-            }
-            println("")
         }
     }
 

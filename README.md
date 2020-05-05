@@ -48,29 +48,44 @@ Placement types are also chosen at random. Words can be placed from the left to 
 
 ## Screenshots 📱
 ### Title Screen
-![](screenshots/Screenshot_1588603788.png)
+<p align="left">
+  <img alt="" src="screenshots/Screenshot_1588603788.png" width="360" />
+</p>
+
 
 Does not contain too much, just some text and a button to get the game started.
 
 ### Game Screen
-![](screenshots/Screenshot_1588603931.png)
+<p align="left">
+  <img alt="" src="screenshots/Screenshot_1588603931.png" width="360" />
+</p>
 
 The first screenshot in this section is what you see when the game first starts. It contains the puzzle, list of the words used to construct it, and a minute long timer ticking down.
 
-![](screenshots/Screenshot_1588603940.png)
+<p align="left">
+  <img alt="" src="screenshots/Screenshot_1588603940.png" width="360" />
+</p>
 
 In the second screenshot, you can see what happens when you select a word correctly and what happens when you're still selecting characters. While still selecting characters, their tiles turn yellow until the user's finger is lifted. If the string selected is one of the words used, then the tiles turn blue and a Toast is returned. Otherwise, the tiles turn back to white and a different Toast appears.
 
-![](screenshots/Screenshot_1588603956.png)
-![](screenshots/Screenshot_1588603970.png)
+<p align="left">
+  <img alt="" src="screenshots/Screenshot_1588603956.png" width="360" />
+</p>
+<p align="left">
+  <img alt="" src="screenshots/Screenshot_1588603970.png" width="360" />
+</p>
 
 In the third and fourth screenshots, you can see two words being placed diagonally. `INTERN` is going from the top left to the bottom right, while `FALL` is going from the bottom right to the top left (backwards diagonal). Diagonal selection is a bit sensative and as such unwanted tiles are also selected when using the emulator.
 
-![](screenshots/Screenshot_1588603983.png)
+<p align="left">
+  <img alt="" src="screenshots/Screenshot_1588603983.png" width="360" />
+</p>
 
 The fifth screenshot in this section shows characters being reused. `ANDROID` (going from the right to the left) and `ENGINEER` (going from the bottom right to the top left) have an `N` in common. 
 
 ### Score Screen
-![](screenshots/Screenshot_1588603992.png)
+<p align="left">
+  <img alt="" src="screenshots/Screenshot_1588603992.png" width="360" />
+</p>
 
 Contains the game score (number of words found) and a button to play again.
