@@ -27,7 +27,7 @@ The project is split into the following components:
   - overwrote default `Application` to implement `Timber` logging globaly
 - `/score`
   - contains `ScoreFragment`, `ScoreViewModel` and `ScoreViewModelFactory`
-  - shows you your final score and asks whether you would like to play again
+  - shows you your final score, gives you the option of playing again and the option to share your score
 - `/title`
   - contains `TitleFragment`
   - loading screen for the app
@@ -85,7 +85,21 @@ The fifth screenshot in this section shows characters being reused. `ANDROID` (g
 
 ### Score Screen
 <p align="left">
-  <img alt="" src="screenshots/Screenshot_1588603992.png" width="360" />
+  <img alt="" src="screenshots/Screenshot_1588777873.png" width="360" />
 </p>
 
-Contains the game score (number of words found) and a button to play again.
+Contains the game score (number of words found), a button to play the game again and an items menu to share your score!
+
+<p align="left">
+  <img alt="" src="screenshots/Screenshot_1588777226.png" width="360" />
+</p>
+
+Here you can see what the different apps are that you can use to share your score.
+
+<p align="left">
+  <img alt="" src="screenshots/Screenshot_1588777244.png" width="360" />
+</p>
+
+And finally, here you can see what the default message is once you choose to share your score!
+
+If you actually play this game, feel free to send me what your score is at ymajid@uwaterloo.ca 💥
