@@ -14,6 +14,13 @@ Hey! Hope that all is going well 🤠 This is my submission for the Mobile Devel
 - [X] Feel free to add any additional features you can think of
 - [X] Allow the user to find the words by swiping over the words
 
+## Architecture 🏗️
+Tried to follow the Separation of Concerns design principle. The `Fragment` objects used in this app only display data and capture user and operating system events. On the other hand, the `ViewModel` objects contain all of the data needed for the UI and prepares it for display. Also, `ViewModel` objects handle the operations to be done on the data.
+
+As the `ViewModel` doesn't know about UI components, it isn't affected by configuration changes. However, we still need to communicate information from the `ViewModel` to the `Fragment` so that it updates and redraws the screen. To do this, we use `LiveData`.
+
+`LiveData` is an observable data holder. What this means is that `Fragments` objects can monitor the state of the `LiveData`, so that when a change occurs they are updated.
+
 ## Project Structure 🗃️
 The project is split into the following components:
 - `/custom`

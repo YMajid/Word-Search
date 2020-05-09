@@ -1,7 +1,6 @@
 import com.example.wordsearch.wordPlacement.PlacementType
 import com.example.wordsearch.wordPlacement.Word
 import timber.log.Timber
-
 /**
  * Class used to create the puzzle.
  * Creates a grid with 6 words randomly chosen from a list passed into the createGrid method.
@@ -17,14 +16,14 @@ class WordSearch {
      * Different placement types a word can take on. When called, this is shuffled so that different words are placed in different manners.
      */
     private val placementTypes = arrayListOf<PlacementType>(
-        PlacementType.leftRight,
-        PlacementType.rightLeft,
-        PlacementType.upDown,
-        PlacementType.downUp,
-        PlacementType.topLeftBottomRight,
-        PlacementType.topRightBottomLeft,
-        PlacementType.bottomLeftTopRight,
-        PlacementType.bottomRightTopLeft
+        PlacementType.LeftRight,
+        PlacementType.RightLeft,
+        PlacementType.UpDown,
+        PlacementType.DownUp,
+        PlacementType.TopLeftBottomRight,
+        PlacementType.TopRightBottomLeft,
+        PlacementType.BottomLeftTopRight,
+        PlacementType.BottomRightTopLeft
     )
 
     /**
@@ -149,7 +148,7 @@ class WordSearch {
             val formattedWord = word.toUpperCase()
             val shuffledPlacementTypes = placementTypes.shuffled()
             for (placementType in shuffledPlacementTypes) {
-                if (placeWord(formattedWord, placementType.movement(placementType), size, grid)) {
+                if (placeWord(formattedWord, movement(placementType), size, grid)) {
                     wordCount++
                     break
                 }
@@ -160,4 +159,21 @@ class WordSearch {
             }
         }
     }
+
+    /**
+     * Movements associated with each placementType.
+     */
+    private fun movement(placementType: PlacementType): IntArray {
+        return when (placementType) {
+            PlacementType.LeftRight -> intArrayOf(1, 0)
+            PlacementType.RightLeft -> intArrayOf(-1, 0)
+            PlacementType.UpDown -> intArrayOf(0, 1)
+            PlacementType.DownUp -> intArrayOf(0, -1)
+            PlacementType.TopLeftBottomRight -> intArrayOf(1, 1)
+            PlacementType.TopRightBottomLeft -> intArrayOf(-1, 1)
+            PlacementType.BottomLeftTopRight -> intArrayOf(1, -1)
+            PlacementType.BottomRightTopLeft -> intArrayOf(-1, -1)
+        }
+    }
 }
+
